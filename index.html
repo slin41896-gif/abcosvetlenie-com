@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+  <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=%%GA4_ID%%"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());
+    gtag('config','%%GA4_ID%%');
+  </script>
+
+  <title>CS2職業賽事地圖策略與賠率波動深度分析 | 電競賽事賠率研究站</title>
+  <meta name="description" content="追蹤CS2地圖選擇策略與近期隊伍狀態，量化分析賽前賠率波動規律，提供數據驅動的電競投注策略。">
+  <link rel="canonical" href="https://abcosvetlenie.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CS2職業賽事地圖策略與賠率波動深度分析 | 電競賽事賠率研究站">
+  <meta property="og:description" content="追蹤CS2地圖選擇策略與近期隊伍狀態，量化分析賽前賠率波動規律，提供數據驅動的電競投注策略。">
+  <meta property="og:url" content="https://abcosvetlenie.com/">
+  <meta property="og:image" content="https://abcosvetlenie.com/og-image.png">
+  <meta property="og:locale" content="zh_HK">
+  <meta property="og:site_name" content="電競賽事賠率研究站">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CS2職業賽事地圖策略與賠率波動深度分析 | 電競賽事賠率研究站">
+  <meta name="twitter:description" content="追蹤CS2地圖選擇策略與近期隊伍狀態，量化分析賽前賠率波動規律，提供數據驅動的電競投注策略。">
+  <meta name="twitter:image" content="https://abcosvetlenie.com/og-image.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://abcosvetlenie.com/#website",
+        "url": "https://abcosvetlenie.com/",
+        "name": "電競賽事賠率研究站",
+        "publisher": { "@id": "https://abcosvetlenie.com/#organization" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://abcosvetlenie.com/#organization",
+        "name": "電競賽事賠率研究站",
+        "url": "https://abcosvetlenie.com/",
+        "logo": { "@type": "ImageObject", "url": "https://abcosvetlenie.com/LOGO.svg" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "電競投注和傳統體育投注有什麼分別？",
+            "acceptedAnswer": { "@type": "Answer", "text": "主要差別在四個面向：（1）賽制複雜性——電競有BO1/BO3等賽制及地圖選擇影響；（2）數據透明度——電競數據全面公開且即時；（3）賠率效率——電競市場相對新興，存在更多市場低效機會；（4）結算規則——特殊盤口（首血、全滅）規則因平台而異，需特別注意。" }
+          },
+          {
+            "@type": "Question",
+            "name": "CS2地圖選擇如何影響賠率？",
+            "acceptedAnswer": { "@type": "Answer", "text": "地圖選擇（Map Veto）是CS2比賽的重要戰略環節，各隊伍在特定地圖的歷史勝率差異顯著（例如某隊在Mirage勝率85%但Ancient僅40%）。精明的賭注者會分析雙方的地圖偏好與對手的剋制策略，在確定地圖後才做出最終投注決策。" }
+          },
+          {
+            "@type": "Question",
+            "name": "如何評估電競隊伍的近期狀態？",
+            "acceptedAnswer": { "@type": "Answer", "text": "電競隊伍狀態評估的四個核心維度：（1）最近30天的賽事勝負記錄；（2）主要選手的個人統計數據趨勢；（3）隊伍人員異動（新隊員磨合期通常影響表現）；（4）練習賽情報（部分職業選手會透過直播流露訓練情況）。" }
+          },
+          {
+            "@type": "Question",
+            "name": "電競投注平台的結算規則要注意什麼？",
+            "acceptedAnswer": { "@type": "Answer", "text": "電競結算最常見的爭議點：（1）「首血」盤口的計算方式（擊殺/助攻是否計算）；（2）比賽中途棄賽或改期的退款政策；（3）BO3系列賽的「贏2局」vs「贏第2局」的語義差異；（4）技術暫停或外部因素導致延誤的結算處理方式。投注前務必確認平台的完整結算規則。" }
+          },
+          {
+            "@type": "Question",
+            "name": "LOL職業賽事賠率如何形成？",
+            "acceptedAnswer": { "@type": "Answer", "text": "LOL賠率形成主要考量：隊伍整體積分與近期戰績（60%權重）、個別路位對位優勢（20%）、版本（Patch）變動對各隊風格的影響（10%）、主客場因素（10%）。賠率公司通常在賽前12-24小時開盤，並根據投注流量持續調整至封盤。" }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style-color.css">
+  <link rel="stylesheet" href="style-base.css">
+  <link rel="stylesheet" href="style-layout.css">
+</head>
+<body>
+
+
+<!-- ── HEADER ──────────────────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="https://abcosvetlenie.com/" class="header-logo">
+      <img src="/LOGO.svg" alt="電競賽事賠率研究站 logo" onerror="this.style.display='none'">
+      電競賽事賠率研究站
+    </a>
+    <nav class="header-nav" aria-label="主導覽">
+      <a href="https://abcosvetlenie.com/blog.html" class="nav-link">攻略中心</a>
+      <a href="https://abcosvetlenie.com/about.html" class="nav-link">關於我們</a>
+    </nav>
+    <a href="https://businessdirectory-uk.com/utm_source=esports-bet-data&utm_medium=referral&utm_campaign=satellite-network&utm_content=header-cta" class="btn btn-primary btn-sm" target="_blank" rel="noopener">立即前往</a>
+  </div>
+</header>
+
+<!-- ── HERO ────────────────────────────────────────────────── -->
+<section class="hero-a" aria-label="精選文章">
+  <div class="hero-a-bg"></div>
+  <div class="hero-a-overlay"></div>
+  <div class="hero-a-content">
+    <span class="tag tag-1" id="hero-cat">精選分析</span>
+    <h1 class="hero-a-title" id="hero-title">CS2職業賽事地圖策略與賠率波動深度分析</h1>
+    <p class="hero-a-excerpt" id="hero-excerpt">追蹤CS2地圖選擇策略與近期隊伍狀態，量化分析賽前賠率波動規律，提供數據驅動的電競投注策略。</p>
+    <div class="hero-a-meta">
+      <div class="author-byline">
+        <span class="author-name">文浩然</span>
+        <span class="author-sep">·</span>
+        <span id="hero-date">最新更新</span>
+      </div>
+      <a href="https://businessdirectory-uk.com/utm_source=esports-bet-data&utm_medium=referral&utm_campaign=satellite-network&utm_content=hero-cta" class="btn btn-primary btn-sm" target="_blank" rel="noopener">查看詳情</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRENDING BAR ─────────────────────────────────────────── -->
+<div class="trending-bar" aria-label="熱門話題">
+  <div class="trending-bar-inner">
+    <span class="trending-label">熱門話題</span>
+    <div class="trending-tags" id="trending-tags">
+      <a href="https://abcosvetlenie.com/blog.html" class="trending-tag">攻略技巧</a>
+      <a href="https://abcosvetlenie.com/blog.html" class="trending-tag">數據分析</a>
+      <a href="https://abcosvetlenie.com/blog.html" class="trending-tag">新手入門</a>
+      <a href="https://abcosvetlenie.com/blog.html" class="trending-tag">策略指南</a>
+      <a href="https://abcosvetlenie.com/blog.html" class="trending-tag">最新資訊</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── GAME CATEGORIES ──────────────────────────────────────── -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">遊戲 <span class="accent">分類指南</span></h2>
+    </div>
+    <div class="featured-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-meta"><span class="tag tag-1">CS2賽事分析</span></div>
+          <p class="card-excerpt">追蹤CS2職業賽事的地圖選擇策略與近期隊伍狀態，量化分析地圖勝率對賠率波動的影響係數。</p>
+          <a href="https://abcosvetlenie.com/blog.html" class="card-footer" style="color:var(--clr-accent);font-weight:700;font-size:13px;text-decoration:none;">查看攻略 →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-meta"><span class="tag tag-2">LOL聯賽研究</span></div>
+          <p class="card-excerpt">深度研究英雄聯盟職業聯賽的隊伍勝率數據與選手狀態，解讀電競賠率市場的形成邏輯。</p>
+          <a href="https://abcosvetlenie.com/blog.html" class="card-footer" style="color:var(--clr-accent);font-weight:700;font-size:13px;text-decoration:none;">查看攻略 →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-meta"><span class="tag tag-3">電競平台評測</span></div>
+          <p class="card-excerpt">比較主流電競投注平台的賠率覆蓋深度、特殊盤口選項與結算規則，識別高風險爭議盤口。</p>
+          <a href="https://abcosvetlenie.com/blog.html" class="card-footer" style="color:var(--clr-accent);font-weight:700;font-size:13px;text-decoration:none;">查看攻略 →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-meta"><span class="tag tag-4">電競投注策略</span></div>
+          <p class="card-excerpt">針對電競特有的賽制結構（BO1/BO3/BO5）與特殊盤口（首血、全滅）建立量化投注策略框架。</p>
+          <a href="https://abcosvetlenie.com/blog.html" class="card-footer" style="color:var(--clr-accent);font-weight:700;font-size:13px;text-decoration:none;">查看攻略 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURED ARTICLES ────────────────────────────────────── -->
+<section class="featured-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">最新 <span class="accent">攻略文章</span></h2>
+      <a href="https://abcosvetlenie.com/blog.html" class="btn btn-outline btn-sm">查看全部</a>
+    </div>
+    <div class="featured-grid" id="articles-grid">
+      <!-- JS rendered -->
+<!-- BLOG_INJECT_START -->
+<!-- BLOG_INJECT_END -->
+    </div>
+  </div>
+</section>
+
+<!-- ── BENEFITS ──────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">為什麼選擇 <span class="accent">電競賽事賠率研究站</span></h2>
+    </div>
+    <div class="featured-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-meta"><span class="tag tag-1">職業賽事數據庫</span></div>
+          <p class="card-excerpt">收錄CS2、LOL、VALORANT等主流電競項目的職業賽事歷史數據，提供可查詢的賽事統計基礎。</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-meta"><span class="tag tag-2">賠率漂移追蹤</span></div>
+          <p class="card-excerpt">實時追蹤主要電競投注平台的開盤至封盤賠率漂移，識別大額智慧錢流入的市場信號。</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-meta"><span class="tag tag-3">地圖策略研究</span></div>
+          <p class="card-excerpt">深度研究各隊伍在不同地圖（Map）上的歷史勝率，提供地圖選擇（Map Veto）階段的統計分析。</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-meta"><span class="tag tag-4">結算規則指引</span></div>
+          <p class="card-excerpt">整理各平台電競特殊盤口的結算規則細節，識別因規則差異導致爭議的高風險投注類型。</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-meta"><span class="tag tag-5">新項目快速覆蓋</span></div>
+          <p class="card-excerpt">電競項目發展迅速，本站積極追蹤新興項目的投注市場動態，確保內容緊跟電競行業發展。</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-meta"><span class="tag tag-1">獨立分析立場</span></div>
+          <p class="card-excerpt">本站分析不受任何電競戰隊或平台贊助，確保所有評測與策略分析的獨立性與客觀性。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MAIN CONTENT + SIDEBAR ───────────────────────────────── -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="content-with-sidebar">
+
+      <!-- Main: Recent Articles -->
+      <div>
+        <div class="section-divider">
+          <h2 class="section-title">近期文章</h2>
+        </div>
+        <div id="recent-articles">
+          <div class="article-row">
+            <div class="article-row-img" style="background:var(--clr-bg);"></div>
+            <div>
+              <a href="https://abcosvetlenie.com/blog.html" class="article-row-title">文章持續更新中，敬請期待更多專業分析...</a>
+              <div class="article-row-date">最新更新</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:var(--space-6);text-align:center;">
+          <a href="https://abcosvetlenie.com/blog.html" class="btn btn-outline">查看所有文章</a>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside>
+        <div class="sidebar-widget">
+          <div class="sidebar-widget-title">關於作者</div>
+          <div class="author-byline" style="flex-direction:column;align-items:flex-start;gap:var(--space-3);">
+            <img src="https://api.dicebear.com/9.x/notionists/png?seed=man-ho-yin&size=200&backgroundColor=fff7ed" alt="文浩然" style="width:64px;height:64px;border-radius:50%;border:3px solid var(--clr-accent);display:block;object-fit:cover;margin-bottom:var(--space-2);">
+            <div>
+              <div class="author-name" style="font-size:16px;margin-bottom:4px;">文浩然</div>
+              <div style="font-size:13px;color:var(--clr-accent);font-weight:700;">電競賽事賠率分析師</div>
+            </div>
+            <p style="font-size:13px;color:var(--clr-text-muted);line-height:1.6;">從事CS2、英雄聯盟及VALORANT電競賽事投注賠率研究逾9年，專注追蹤地圖選擇策略、選手狀態數據與賽前賠率走勢的相關性。建立電競賠率數據庫，覆蓋亞太及歐洲主要電競聯賽賠率歷史。</p>
+            <a href="https://abcosvetlenie.com/about.html" class="btn btn-ghost btn-sm">了解更多</a>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <div class="sidebar-widget-title">熱門標籤</div>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);">
+            <a href="https://abcosvetlenie.com/blog.html" class="tag tag-outline" style="margin-bottom:4px;">攻略技巧</a>
+            <a href="https://abcosvetlenie.com/blog.html" class="tag tag-outline" style="margin-bottom:4px;">數據分析</a>
+            <a href="https://abcosvetlenie.com/blog.html" class="tag tag-outline" style="margin-bottom:4px;">策略指南</a>
+            <a href="https://abcosvetlenie.com/blog.html" class="tag tag-outline" style="margin-bottom:4px;">新手入門</a>
+          </div>
+        </div>
+
+        <div class="sidebar-widget" style="background:var(--clr-bg-dark);border-color:var(--clr-border-dark);">
+          <div class="sidebar-widget-title">立即前往</div>
+          <p style="font-size:13px;color:var(--clr-text-inv-muted);margin-bottom:var(--space-4);line-height:1.6;">取得最新優惠及資訊，立即前往官方平台。</p>
+          <a href="https://businessdirectory-uk.com/utm_source=esports-bet-data&utm_medium=referral&utm_campaign=satellite-network&utm_content=sidebar-cta" class="btn btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">前往官網</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ──────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container" style="max-width:720px;">
+    <h2 class="section-title">常見問題</h2>
+    <div class="faq-section">
+      <div class="faq-item">
+        <div class="faq-q">電競投注和傳統體育投注有什麼分別？</div>
+        <div class="faq-a">主要差別在四個面向：（1）賽制複雜性——電競有BO1/BO3等賽制及地圖選擇影響；（2）數據透明度——電競數據全面公開且即時；（3）賠率效率——電競市場相對新興，存在更多市場低效機會；（4）結算規則——特殊盤口（首血、全滅）規則因平台而異，需特別注意。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">CS2地圖選擇如何影響賠率？</div>
+        <div class="faq-a">地圖選擇（Map Veto）是CS2比賽的重要戰略環節，各隊伍在特定地圖的歷史勝率差異顯著（例如某隊在Mirage勝率85%但Ancient僅40%）。精明的賭注者會分析雙方的地圖偏好與對手的剋制策略，在確定地圖後才做出最終投注決策。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">如何評估電競隊伍的近期狀態？</div>
+        <div class="faq-a">電競隊伍狀態評估的四個核心維度：（1）最近30天的賽事勝負記錄；（2）主要選手的個人統計數據趨勢；（3）隊伍人員異動（新隊員磨合期通常影響表現）；（4）練習賽情報（部分職業選手會透過直播流露訓練情況）。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">電競投注平台的結算規則要注意什麼？</div>
+        <div class="faq-a">電競結算最常見的爭議點：（1）「首血」盤口的計算方式（擊殺/助攻是否計算）；（2）比賽中途棄賽或改期的退款政策；（3）BO3系列賽的「贏2局」vs「贏第2局」的語義差異；（4）技術暫停或外部因素導致延誤的結算處理方式。投注前務必確認平台的完整結算規則。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">LOL職業賽事賠率如何形成？</div>
+        <div class="faq-a">LOL賠率形成主要考量：隊伍整體積分與近期戰績（60%權重）、個別路位對位優勢（20%）、版本（Patch）變動對各隊風格的影響（10%）、主客場因素（10%）。賠率公司通常在賽前12-24小時開盤，並根據投注流量持續調整至封盤。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ────────────────────────────────────────────── -->
+<section class="section container">
+  <div class="cta-banner">
+    <h2>準備好了嗎？</h2>
+    <p>立即前往官方平台，獲取最新優惠與資訊。</p>
+    <a href="https://businessdirectory-uk.com/utm_source=esports-bet-data&utm_medium=referral&utm_campaign=satellite-network&utm_content=banner-cta" class="btn btn-primary btn-lg" target="_blank" rel="noopener">立即前往</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">電競賽事賠率研究站</div>
+        <p class="footer-tagline">追蹤CS2地圖選擇策略與近期隊伍狀態，量化分析賽前賠率波動規律，提供數據驅動的電競投注策略。</p>
+      </div>
+      <div>
+        <div class="footer-col-title">內容分類</div>
+        <a href="https://abcosvetlenie.com/blog.html" class="footer-link">攻略中心</a>
+        <a href="https://abcosvetlenie.com/blog.html" class="footer-link">數據分析</a>
+        <a href="https://abcosvetlenie.com/blog.html" class="footer-link">新手指南</a>
+      </div>
+      <div>
+        <div class="footer-col-title">關於</div>
+        <a href="https://abcosvetlenie.com/about.html" class="footer-link">關於我們</a>
+        <a href="https://businessdirectory-uk.com/utm_source=esports-bet-data&utm_medium=referral&utm_campaign=satellite-network&utm_content=footer-link" class="footer-link" target="_blank" rel="noopener">官方平台</a>
+      </div>
+      <div>
+        <div class="footer-col-title">法律聲明</div>
+        <a href="https://abcosvetlenie.com/privacy.html" class="footer-link">私隱政策</a>
+        <a href="https://abcosvetlenie.com/terms.html" class="footer-link">使用條款</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="footer-year">2026</span> 電競賽事賠率研究站. 所有內容僅供參考。</span>
+      <span>本站為獨立媒體，不代表任何平台立場。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  // Load recent articles from blog-recent.json
+  fetch('/data/blog-recent.json')
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (!data || !data.articles || !data.articles.length) return;
+      const grid = document.getElementById('articles-grid');
+      const recent = document.getElementById('recent-articles');
+      const articles = data.articles.slice(0, 6);
+      if (articles.length >= 3) {
+        grid.innerHTML = articles.slice(0,3).map((a, i) => `
+          <div class="card">
+            <img class="card-img" src="${a.imageUrl || ''}" alt="${a.title}" loading="lazy"
+              onerror="this.style.background='var(--clr-bg-alt)';this.src=''">
+            <div class="card-body">
+              <div class="card-meta"><span class="tag tag-${(i%5)+1}">${a.category || '攻略'}</span></div>
+              <a href="/blog/${a.slug}" class="card-title">${a.title}</a>
+              <p class="card-excerpt">${a.excerpt || a.metaDesc || ''}</p>
+              <div class="card-footer">
+                <span>${a.date || ''}</span>
+                <a href="/blog/${a.slug}" style="color:var(--clr-accent);font-weight:700;font-size:12px;">閱讀全文 →</a>
+              </div>
+            </div>
+          </div>`).join('');
+      }
+      if (articles.length) {
+        recent.innerHTML = articles.map((a, i) => `
+          <div class="article-row">
+            <img class="article-row-img" src="${a.imageUrl || ''}" alt="${a.title}" loading="lazy"
+              onerror="this.style.background='var(--clr-bg-alt)';this.src=''">
+            <div>
+              <a href="/blog/${a.slug}" class="article-row-title">${a.title}</a>
+              <div class="article-row-date">${a.date || ''}</div>
+            </div>
+          </div>`).join('');
+        if (articles[0]) {
+          document.getElementById('hero-title').textContent = articles[0].title;
+          document.getElementById('hero-excerpt').textContent = articles[0].excerpt || articles[0].metaDesc || '';
+          if (articles[0].category) document.getElementById('hero-cat').textContent = articles[0].category;
+          if (articles[0].date) document.getElementById('hero-date').textContent = articles[0].date;
+        }
+      }
+    }).catch(() => {});
+</script>
+</body>
+</html>
