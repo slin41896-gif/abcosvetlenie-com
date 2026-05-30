@@ -1,6 +1,14 @@
 {
   "articles": [
     {
+      "slug": "cs2-international-tournament-betting-guide",
+      "title": "CS2國際邀請賽投注指南：新手入門策略與市場分析",
+      "category": "undefined",
+      "date": "2026-05-30",
+      "excerpt": "每次睇CS2國際賽，我都心郁郁想落注，但又怕亂咁嚟輸清光？今日就同大家分享我點樣由新手變精明玩家嘅秘訣！",
+      "imageUrl": "https://pixabay.com/get/g89f792b197b1948b03118cd83b0708a27e25c155a4b75ed7c811a1fc8c70be73bdd16b0f05d1f62a46fc97dd75d0f1cb3d2117181f6992cbe8a742ea3f90a540_640.jpg"
+    },
+    {
       "slug": "article",
       "title": "article",
       "category": "General",
@@ -15,14 +23,6 @@
       "date": "2026-05-30",
       "excerpt": "{",
       "imageUrl": "https://pixabay.com/get/gb70dfbdd65133ee4117660240f122cb7d97372aeb002f18b53b90e9b908e2a31e6eb2ee056e080209cd2471123245fd36872f3db1690ad64e079dfd93481cc4f_640.jpg"
-    },
-    {
-      "slug": "cs2-esports-betting-odds-comparison",
-      "title": "CS2電競投注平台賠率比較研究與綜合評析",
-      "category": "電競投注",
-      "date": "2026-05-29",
-      "excerpt": "玩CS2電競投注，賠率高低真係影響我哋嘅回報，今次就同大家拆解點樣揀最好嘅盤口！",
-      "imageUrl": "https://pixabay.com/get/g8465a9b2cdc76ed1cdd8a899aeaa1c198119931759dd9e515eeea1ee76504b9a709eebf2a986fda06af8113e9f5930171aa6ccd93c5cd46b9005202578d631fb_640.jpg"
     }
   ]
 }
